@@ -10,25 +10,24 @@ class AppendWords extends Component {
     };
 
 
-    _handleSubmit = async (event) => {
-        event.preventDefault();
-        const { input } = this.state;
-        const newOutput = [...this.state.output, ' ', input] ;
+    _appendText = () => {
+        const { input, output } = this.state;
+        const newOutput = [...output, ' ', input] ;
         this.setState({
             input: '',
             output: newOutput
         });
     }
 
-    _handleDecrease = async (event) => {
-        event.preventDefault();
-        const { input } = this.state;
-        const newOutput = [...this.state.output, ' ', input] ;
+    _deleteText = () => {
+        const { output } = this.state;
+        const newOutput = [...output].pop() ;
         this.setState({
-            input: '',
             output: newOutput
         });
     }
+
+   
 
         _handleChange = (newInput) => {
             this.setState({
@@ -40,10 +39,12 @@ class AppendWords extends Component {
         return (
             <>
                 <h1>Make those sentences longer!</h1>
-                <form onSubmit={this._handleSubmit}>
+                <form>
 
                     <input type="text" value={this.state.input} onChange={(event) => this._handleChange(event.target.value)}/>
-                    <Button type="submit">Submit</Button>
+                    <Button type="button" onClick={this._appendText}>Append</Button>
+                    <Button type="button" onClick={this._deleteText}>Delete</Button>
+
                 </form>
               
                 
