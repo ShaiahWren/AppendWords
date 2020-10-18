@@ -12,7 +12,8 @@ class AppendWords extends Component {
 
     _appendText = () => {
         const { input, output } = this.state;
-        const newOutput = [...output, ' ', input] ;
+        let newOutput = [...output, input];
+        
         this.setState({
             input: '',
             output: newOutput
@@ -21,7 +22,8 @@ class AppendWords extends Component {
 
     _deleteText = () => {
         const { output } = this.state;
-        const newOutput = [...output].pop() ;
+        let newOutput = [...output] ;
+        newOutput.pop();
         this.setState({
             output: newOutput
         });
@@ -49,7 +51,7 @@ class AppendWords extends Component {
               
                 
 
-                <p>{this.state.output}</p>
+                <p>{this.state.output.join(' ')}</p>
                 
             </>
         )
